@@ -8,6 +8,7 @@ export default function() {
   this.get('/sources');
 
   this.passthrough('mapbox://**');
+  this.passthrough('https://api.mapbox.com/**');
   this.passthrough('https://raw.githubusercontent.com/**');
   this.passthrough('http://raw.githubusercontent.com/**');
   this.passthrough('https://tiles.planninglabs.nyc/**');

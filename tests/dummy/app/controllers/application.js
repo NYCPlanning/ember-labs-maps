@@ -9,6 +9,6 @@ export default Controller.extend({
     zoom,
     pitch,
     bearing,
-    style: 'https://raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+    style: 'mapbox://styles/mapbox/dark-v9',
   }
 });

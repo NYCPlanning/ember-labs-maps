@@ -18,10 +18,10 @@ module.exports = function(environment) {
     },
 
     'mapbox-gl': {
-      accessToken: 'peanut-butter',
-      map: {
-        style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
-      },
+      accessToken: 'pk.eyJ1IjoibWF0dGdhcmRuZXJueWMiLCJhIjoiY2o4NTk2dTlzMGFjZDMydWRtY3NsYnFjZSJ9.lA_A4IHM2EGToFiPKFzSug',
+      // map: {
+      //   style: '//raw.githubusercontent.com/NYCPlanning/labs-gl-style/master/data/style.json',
+      // },
     },
 
     APP: {

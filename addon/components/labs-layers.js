@@ -18,6 +18,8 @@ export default class MainMapLayersComponent extends Component {
       .addSource('hovered-feature', this.get('hoveredFeatureSource'));
 
     const sources = this.get('sources');
+
+    console.log('add sources');
     sources.forEach((source) => {
       map.addSource(source.id, source);
     });

@@ -4,9 +4,9 @@ import normalizeCartoVectors from 'cartobox-promises-utility/utils/normalize-car
 export default Route.extend({
   model() {
     return {
-      sources: this.store.findAll('source'),
-      layerGroups: this.store.findAll('layer-group'),
-      layers: this.store.peekAll('layer'),
+      // sources: this.store.findAll('source'),
+      // layerGroups: this.store.findAll('layer-group'),
+      // layers: this.store.peekAll('layer'),
     }
   }
 });

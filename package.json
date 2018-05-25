@@ -27,8 +27,7 @@
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-decorators": "2.1.0",
     "ember-mapbox-gl": "0.10.0",
-    "ember-truth-helpers": "2.0.0",
-    "pretender": "2.0.0"
+    "ember-truth-helpers": "2.0.0"
   },
   "devDependencies": {
     "@ember-decorators/babel-transforms": "^2.0.0",
@@ -40,7 +39,6 @@
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-mirage": "0.4.7",
     "ember-cli-qunit": "^4.1.1",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
@@ -59,7 +57,9 @@
     "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.2.3",
     "mapbox-gl": "^0.44.0",
-    "pretender": "2.0.0"
+    "fake-xml-http-request": "NYCPlanning/FakeXMLHttpRequest",
+    "pretender": "NYCPlanning/pretender",
+    "ember-cli-mirage": "NYCPlanning/ember-cli-mirage"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
