@@ -28,24 +28,31 @@ export default class LayerModel extends Model.extend({}) {
     }
   }
 
+  @attr('string', { defaultValue: 'boundary_country' }) before
+  @attr('string') displayName;
+  @attr('number', { defaultValue: -1 }) position;
+  @attr('boolean', { defaultValue: false }) tooltipable
+  @attr('string', { defaultValue: '' }) tooltipTemplate
+  @attr({ defaultValue: () => ({}) }) style
   @belongsTo('layer-group') layerGroup
 
-  @attr('number', { defaultValue: -1 }) position;
+  @alias('layerGroup.highlightable') highlightable;
+  @alias('layerGroup.layerVisibilityType') layerVisibilityType;
+  @alias('style.paint') paint;
 
   @computed('style.{paint,layout,filter}')
   get mapboxGlStyle() {
     return this.get('style');
   }
 
-  @attr('string', { defaultValue: 'boundary_country' }) before
-
-  @attr('string') displayName;
-
-  @attr({ defaultValue: () => ({}) }) style
-
-  @alias('style.paint') paint;
-
-  @alias('style.layout') layout;
+  @computed('style.layout')
+  get layout() {
+    return this.get('style.layout');
+  }
+  set layout(layout) {
+    this.set('style', assign({}, this.get('style'), { layout }));
+    this.toggleProperty('layerGroup.didChange');
+  }
 
   // getter and setter for filter
   // accepts array
@@ -55,6 +62,7 @@ export default class LayerModel extends Model.extend({}) {
   }
   set filter(filter) {
     this.set('style', assign({}, this.get('style'), { filter }));
+    this.toggleProperty('layerGroup.didChange');
   }
 
   // getter and setter for visibility
@@ -73,14 +81,7 @@ export default class LayerModel extends Model.extend({}) {
     if (layout) {
       set(layout, 'visibility', visibility);
       this.set('layout', layout);
+      this.toggleProperty('layerGroup.didChange');
     }
   }
-
-  @alias('layerGroup.highlightable') highlightable;
-
-  @alias('layerGroup.layerVisibilityType') layerVisibilityType;
-
-  @attr('boolean', { defaultValue: false }) tooltipable
-
-  @attr('string', { defaultValue: '' }) tooltipTemplate
 }

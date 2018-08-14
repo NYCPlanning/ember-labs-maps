@@ -1,15 +1,13 @@
 <h2 id="title">Welcome to Ember Labs Maps</h2>
 
-{{#labs-map
-  id='main-map'
-  mapLoaded=(action 'handleMapLoad')
-  initOptions=initMapOptions as |map|}}
-  {{#map.labs-layers
-    model=model as |layers|}}
-    {{#layers.tooltip as |tooltip|}}
-      {{tooltip-renderer feature=tooltip.feature template=tooltip.layer.tooltipTemplate}}
-    {{/layers.tooltip}}
-  {{/map.labs-layers}}
-{{/labs-map}}
+{{#labs-style-factory
+  baseStyle=model.meta.mapboxStyle
+  layerGroups=model.layerGroups as |factory|}}
+  {{labs-map
+    id='main-map'
+    mapLoaded=(action 'handleMapLoad')
+    initOptions=initMapOptions 
+    style=factory.style}}
+{{/labs-style-factory}}
 
 {{outlet}}
