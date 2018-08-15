@@ -15,7 +15,7 @@ export default [
         "before": "place_other",
         "tooltipable": false,
         "tooltipTemplate": "{{type}}",
-        "highlightable": false,
+        "highlightable": true,
         "style": {
           "id": "citymap-amendments-fill",
           "type": "fill",
@@ -431,7 +431,7 @@ export default [
             "fill-opacity": 0
           }
         },
-        "highlightable": true,
+        "highlightable": false,
         "clickable": true,
         "tooltipTemplate": "{{overlay}}"
       },

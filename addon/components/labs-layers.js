@@ -110,30 +110,34 @@ export default class MainMapLayersComponent extends Component {
   @action
   handleLayerMouseMove(e) {
     const map = this.get('map');
-    const [feature] = e.features;
+    const layers = this.get('layers').mapBy('id');
+    const features = map.queryRenderedFeatures(e.point, { layers });
+    const [feature] = features;
 
-    const foundLayer = this.get('layers').findBy('id', feature.layer.id);
+    if (feature) {
+      const foundLayer = this.get('layers').findBy('id', feature.layer.id);
 
-    const { highlightable, tooltipable } =
-      foundLayer.getProperties('highlightable', 'tooltipable');
+      const { highlightable, tooltipable } =
+        foundLayer.getProperties('highlightable', 'tooltipable');
 
-    // this layer-specific event should always be called
-    // if it's available
-    const mouseMoveEvent = this.get('onLayerMouseMove');
-    if (mouseMoveEvent && feature) {
-      mouseMoveEvent(e, foundLayer);
-    }
+      // this layer-specific event should always be called
+      // if it's available
+      const mouseMoveEvent = this.get('onLayerMouseMove');
+      if (mouseMoveEvent && feature) {
+        mouseMoveEvent(e, foundLayer);
+      }
 
-    // if layer is set for this behavior
-    if (highlightable || tooltipable) {
-      // set the hovered feature
-      this.setProperties({
-        hoveredFeature: feature,
-        mousePosition: e.point,
-      });
+      // if layer is set for this behavior
+      if (highlightable || tooltipable) {
+        // set the hovered feature
+        this.setProperties({
+          hoveredFeature: feature,
+          mousePosition: e.point,
+        });
 
-      map.getSource('hovered-feature').setData(feature);
-      map.getCanvas().style.cursor = 'pointer';
+        map.getSource('hovered-feature').setData(feature);
+        map.getCanvas().style.cursor = 'pointer';
+      } 
     }
   }
 

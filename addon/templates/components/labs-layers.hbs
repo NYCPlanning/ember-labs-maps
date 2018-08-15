@@ -1,13 +1,5 @@
 {{!-- Bind layer groups' layers --}}
 {{#each layers key='style' as |layerObject|}}
-  {{!-- if the layer is hightlightable or tooltipable, bind events --}}
-  {{#if (or layerObject.highlightable layerObject.tooltipable)}}
-    {{mapbox-gl-on 'mousemove' layerObject.mapboxGlStyle.id (action 'handleLayerMouseMove')
-      eventSource=map}}
-    {{mapbox-gl-on 'mouseleave' layerObject.mapboxGlStyle.id (action 'handleLayerMouseLeave')
-      eventSource=map}}
-  {{/if}}
-
   {{mapbox-gl-on 'click' layerObject.mapboxGlStyle.id (action 'handleLayerMouseClick')
     eventSource=map}}
 
@@ -17,6 +9,16 @@
     before=layerObject.before
   }}
 {{/each}}
+
+{{!-- if the layer is hightlightable or tooltipable, bind events --}}
+{{#if (or layerObject.highlightable layerObject.tooltipable)}}
+
+{{/if}}
+
+{{mapbox-gl-on 'mousemove' (action 'handleLayerMouseMove')
+  eventSource=map}}
+{{mapbox-gl-on 'mouseleave' (action 'handleLayerMouseLeave')
+  eventSource=map}}
 
 {{!-- Highlighted Layer Handling --}}
 {{#if hoveredFeature}}
